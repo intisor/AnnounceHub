@@ -1,0 +1,14 @@
+﻿@model AnnounceHub.Models.SendAnnouncementViewModel
+@{
+    ViewData["Title"] = "Send Announcement";
+}
+<div class="container">
+    <h2>Send Announcement</h2>
+    <form asp-action="SendAnnouncement" method="post">
+        <div class="form-group">
+            <label asp-for="Message"></label>
+            <input asp-for="Message" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Send Announcement</button>
+    </form>
+</div>
