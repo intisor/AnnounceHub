@@ -107,7 +107,11 @@ Edit the `appsettings.json` file to configure your MySQL connection:
 }
 ```
 
-**Important**: Replace `your_username` and `your_password` with your actual MySQL credentials. The default configuration uses `root` user.
+**Important**: 
+- Replace `your_username` and `your_password` with your actual MySQL credentials
+- For security best practices, create a dedicated MySQL user for the application instead of using the root account
+- Example: `CREATE USER 'announcehub_user'@'localhost' IDENTIFIED BY 'secure_password';`
+- Grant only necessary permissions: `GRANT SELECT, INSERT, UPDATE, DELETE ON AnnounceHub.* TO 'announcehub_user'@'localhost';`
 
 ### 3. Create the Database
 
@@ -136,11 +140,11 @@ The application will start on `https://localhost:5001` (HTTPS) or `http://localh
 On first run, the application automatically creates a default admin user:
 
 - **Username**: `Intitech`
-- **Password**: `Admin@123`
 - **Email**: `admin@example.com`
 - **Role**: Admin
+- **Password**: See `Data/AppDbContext.cs` in the `DbInitializer.Initialize()` method
 
-**Important**: Change this password in production environments.
+**⚠️ SECURITY WARNING**: The default password is hardcoded in the source code for development purposes. You **MUST** change this password before deploying to any production or publicly accessible environment. Consider using environment variables or a secure configuration system for production deployments.
 
 ## Usage Guide
 
@@ -358,17 +362,16 @@ dotnet watch run
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE.txt` file for details.
+This project is licensed under the MIT License. See the `LICENSE.txt` file for full details.
 
-```
-MIT License
+The MIT License is a permissive license that allows for reuse with minimal restrictions. Key points:
+- Commercial use allowed
+- Modification allowed
+- Distribution allowed
+- Private use allowed
+- Warranty and liability limitations apply
 
-Copyright (c) [year] [fullname]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction...
-```
+For the complete license text, refer to the `LICENSE.txt` file in the repository root.
 
 ## Contributing
 
